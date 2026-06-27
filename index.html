@@ -2919,18 +2919,6 @@ function bookingPage() {
         <div>بجانب مطعم ألف ليلة وليلة</div>
       </div>
 
-      <div class="works-intro">
-        <h2>من أعمالنا ✨</h2>
-        <p>لمشاهدة المزيد من الصور، اضغطي على اسم الخدمة داخل الصورة.</p>
-      </div>
-
-      <div class="gallery">
-        <div class="tile"><img loading="lazy" decoding="async" onclick="openImageModal(this.src)" src="https://lh3.googleusercontent.com/d/1GBQ9rmwIhmCtOQvq9z8t375X_8_S-pzI=w1000"><div class="tile-title" onclick="openServiceGallery('brow')">👑 Brow</div><div class="small">تجميل الحواجب</div><div style="color:#D4AF37;padding-bottom:8px;">★★★★★</div></div>
-        <div class="tile"><img loading="lazy" decoding="async" onclick="openImageModal(this.src)" src="https://lh3.googleusercontent.com/d/1hYO4rMwbTn1bGSd4RnA8AsBzgsEmxHhO=w1000"><div class="tile-title" onclick="openServiceGallery('lips')">💋 Lips</div><div class="small">توريد الشفاه</div><div style="color:#D4AF37;padding-bottom:8px;">★★★★★</div></div>
-        <div class="tile"><img loading="lazy" decoding="async" onclick="openImageModal(this.src)" src="https://lh3.googleusercontent.com/d/1fWvlJu_Mtm8GX1MCcpaPjk_uQEOMbn7X=w1000"><div class="tile-title" onclick="openServiceGallery('nails')">🌸 Nails</div><div class="small">أظافر أنيقة</div><div style="color:#D4AF37;padding-bottom:8px;">★★★★★</div></div>
-        <div class="tile"><img loading="lazy" decoding="async" onclick="openImageModal(this.src)" src="https://lh3.googleusercontent.com/d/1Be1_pfYn9Lt2hybJ5pPvuvjtlTcCNh-X=w1000"><div class="tile-title" onclick="openServiceGallery('lashes')">🟣 Lashes</div><div class="small">تجميل الرموش</div><div style="color:#D4AF37;padding-bottom:8px;">★★★★★</div></div>
-      </div>
-
 <label>الاسم الكامل ✨</label>
       <input id="name" placeholder="اكتبي اسمك الكامل">
 
@@ -9411,5 +9399,62 @@ body.rana-v144-booking #ranaV137Gallery{
   document.addEventListener('DOMContentLoaded', apply);
   window.addEventListener('load', apply);
   [60,180,400,900,1800,3200].forEach(function(t){setTimeout(apply,t)});
+})();
+</script>
+
+<style id="rana-v145-remove-all-works-booking-style">
+/* ===== Rana V145: completely hide/remove works sections on booking pages ===== */
+body.rana-v145-booking .works-intro,
+body.rana-v145-booking .gallery,
+body.rana-v145-booking #ranaV137Gallery,
+body.rana-v145-booking .rana-v137-gallery-box,
+body.rana-v145-booking .rana-v137-gallery-grid{
+  display:none!important;
+}
+</style>
+<script id="rana-v145-remove-all-works-booking-script">
+(function(){
+  function isBooking(){
+    try{
+      var p = new URLSearchParams(location.search);
+      return !!p.get('mode') && !p.get('myBookings');
+    }catch(e){ return false; }
+  }
+  function removeWorks(){
+    if(!isBooking()) return;
+    document.body.classList.add('rana-v145-booking');
+    document.querySelectorAll('.works-intro,.gallery,#ranaV137Gallery,.rana-v137-gallery-box,.rana-v137-gallery-grid').forEach(function(el){
+      if(el) el.remove();
+    });
+    var titleMatchers = ['من أعمالنا','شاهدي أعمالنا','معرض الخدمات'];
+    document.querySelectorAll('h1,h2,h3,div,p').forEach(function(el){
+      var txt = (el.textContent||'').replace(/\s+/g,' ').trim();
+      if(!txt) return;
+      if(titleMatchers.some(function(t){ return txt.indexOf(t) > -1; })){
+        var box = el.closest('.works-intro,.rana-v137-gallery-box');
+        if(box){ box.remove(); return; }
+        var candidate = el.closest('div');
+        if(candidate && (candidate.querySelector('img') || candidate.nextElementSibling)){
+          var next = candidate.nextElementSibling;
+          if(next && (next.classList.contains('gallery') || next.classList.contains('rana-v137-gallery-grid') || next.querySelector('.tile') || next.querySelector('img'))){
+            next.remove();
+          }
+          if(txt.indexOf('من أعمالنا')>-1 || txt.indexOf('شاهدي أعمالنا')>-1 || txt.indexOf('معرض الخدمات')>-1){
+            candidate.remove();
+          }
+        }
+      }
+    });
+  }
+  var scheduled=false;
+  function schedule(){ if(scheduled) return; scheduled=true; requestAnimationFrame(function(){scheduled=false; removeWorks();}); }
+  document.addEventListener('DOMContentLoaded', schedule);
+  window.addEventListener('load', schedule);
+  window.addEventListener('resize', schedule);
+  [80,180,400,800,1500,2500,4000,6000].forEach(function(t){ setTimeout(schedule,t); });
+  var obs = new MutationObserver(schedule);
+  document.addEventListener('DOMContentLoaded', function(){
+    obs.observe(document.documentElement,{childList:true,subtree:true});
+  });
 })();
 </script>

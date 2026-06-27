@@ -8815,10 +8815,10 @@ body.rana-v114-mybookings .my-v44-hero{
   function openGallery(title,sub,img){var modal=document.getElementById("serviceGalleryModal"),titleEl=document.getElementById("serviceGalleryTitle"),subEl=document.getElementById("serviceGallerySub"),grid=document.getElementById("serviceGalleryGrid");if(!modal||!titleEl||!subEl||!grid){if(typeof openImageModal==="function")openImageModal(img);return}titleEl.textContent=title;subEl.textContent=sub||"شاهدي صور الخدمة المختارة";grid.innerHTML=[1,2,3].map(function(n){return '<div class="service-gallery-photo"><img loading="lazy" decoding="async" src="'+esc(img)+'" onclick="openImageModal(\''+esc(img)+'\')"><div>'+esc(title)+' — صورة '+n+'</div></div>'}).join("");modal.style.display="flex"}
   window.ranaV137OpenGallery=function(type){var data={nailsMain:["أعمال الأظافر","شاهدي نماذج من خدمات الأظافر.",IMG.nails],nailsGel:["جل لاك الأظافر","أمثلة ناعمة وأنيقة لجل لاك.",IMG.nails],nailsBuild:["بناء وتركيب الأظافر","نماذج لبناء وتقوية الأظافر بشكل مرتب.",IMG.nails],nailsCare:["عناية وتنظيف الأظافر","ترتيب وتنظيف ناعم لإطلالة طبيعية.",IMG.nails],nailsDesign:["تصميمات أظافر خاصة","أفكار تصميمات وموديلات خاصة.",IMG.nails],brow:["أعمال الحواجب","نماذج من ترتيب ورسم وتنظيف الحواجب.",IMG.brow],lashes:["أعمال الرموش","نماذج من خدمات الرموش واللوك الناعم.",IMG.lashes],lips:["أعمال الشفايف","نماذج من خدمات الشفايف واللمسة الطبيعية.",IMG.lips]}[type];if(data)openGallery(data[0],data[1],data[2])};
   function card(type,img,title,hint){return '<div class="rana-v137-card" onclick="ranaV137OpenGallery(\''+type+'\')"><img src="'+img+'" loading="lazy" decoding="async"><div><strong>'+title+'</strong><span>'+hint+'</span></div></div>'}
-  function htmlFor(m){if(m==="nails")return '<div id="ranaV137Gallery" class="rana-v137-gallery-box"><div class="rana-v137-gallery-title">معرض الأظافر 💅</div><div class="rana-v137-gallery-sub">اختاري نوع الخدمة وشاهدي أمثلة من شغل الأظافر.</div><div class="rana-v137-gallery-grid">'+card("nailsGel",IMG.nails,"جل لاك","اضغطي لمشاهدة الصور")+card("nailsBuild",IMG.nails,"بناء وتركيب","اضغطي لمشاهدة الصور")+card("nailsCare",IMG.nails,"عناية وتنظيف","اضغطي لمشاهدة الصور")+card("nailsDesign",IMG.nails,"تصميمات خاصة","اضغطي لمشاهدة الصور")+'</div></div>';
-    if(m==="beauty")return '<div id="ranaV137Gallery" class="rana-v137-gallery-box"><div class="rana-v137-gallery-title">معرض التجميل 🌸</div><div class="rana-v137-gallery-sub">شاهدي صور الحواجب والرموش والشفايف.</div><div class="rana-v137-gallery-grid beauty">'+card("brow",IMG.brow,"حواجب","اضغطي لمشاهدة الصور")+card("lashes",IMG.lashes,"رموش","اضغطي لمشاهدة الصور")+card("lips",IMG.lips,"شفايف","اضغطي لمشاهدة الصور")+'</div></div>';
-    if(m==="combo"||m==="landing")return '<div id="ranaV137Gallery" class="rana-v137-gallery-box"><div class="rana-v137-gallery-title">'+(m==="landing"?"شاهدي أعمالنا ✨":"معرض الخدمات 💎")+'</div><div class="rana-v137-gallery-sub">اضغطي على أي صورة لمشاهدة معرض صغير للخدمة.</div><div class="rana-v137-gallery-grid">'+card("nailsMain",IMG.nails,"أظافر","معرض الأظافر")+card("brow",IMG.brow,"حواجب","معرض الحواجب")+card("lashes",IMG.lashes,"رموش","معرض الرموش")+card("lips",IMG.lips,"شفايف","معرض الشفايف")+'</div></div>';
+  function htmlFor(m){
+    if(m==="landing")return '<div id="ranaV137Gallery" class="rana-v137-gallery-box"><div class="rana-v137-gallery-title">شاهدي أعمالنا ✨</div><div class="rana-v137-gallery-sub">اضغطي على أي صورة لمشاهدة معرض صغير للخدمة.</div><div class="rana-v137-gallery-grid">'+card("nailsMain",IMG.nails,"أظافر","معرض الأظافر")+card("brow",IMG.brow,"حواجب","معرض الحواجب")+card("lashes",IMG.lashes,"رموش","معرض الرموش")+card("lips",IMG.lips,"شفايف","معرض الشفايف")+'</div></div>';
     return ""}
+
   function insert(){if(document.getElementById("ranaV137Gallery"))return;if(isLanding()){var grid=document.querySelector(".v96-mode-grid")||document.querySelector(".v95-mode-grid")||document.querySelector(".v72-mode-grid");if(!grid||!grid.parentNode)return;var d=document.createElement("div");d.innerHTML=htmlFor("landing");grid.parentNode.insertBefore(d.firstElementChild,grid);return}var m=mode();if(!m)return;var anchor=document.getElementById("bookingFormV72")||document.querySelector(".share-booking-card")||document.querySelector(".rana-hero");if(!anchor||!anchor.parentNode)return;var box=document.createElement("div");box.innerHTML=htmlFor(m);anchor.parentNode.insertBefore(box.firstElementChild,anchor.nextSibling)}
   function boot(){try{insert()}catch(e){}}
   document.addEventListener("DOMContentLoaded",boot);window.addEventListener("load",boot);[50,150,300,600,1000,1600,2500,4000].forEach(function(t){setTimeout(boot,t)});try{var obs=new MutationObserver(function(){boot()});obs.observe(document.documentElement,{childList:true,subtree:true})}catch(e){}
@@ -9456,5 +9456,29 @@ body.rana-v145-booking .rana-v137-gallery-grid{
   document.addEventListener('DOMContentLoaded', function(){
     obs.observe(document.documentElement,{childList:true,subtree:true});
   });
+})();
+</script>
+
+<style id="rana-v146-force-hide-gallery-booking-modes">
+body.rana-v146-booking .works-intro,
+body.rana-v146-booking .gallery,
+body.rana-v146-booking #ranaV137Gallery,
+body.rana-v146-booking .rana-v137-gallery-box{display:none!important;}
+</style>
+<script id="rana-v146-force-hide-gallery-booking-modes-script">
+(function(){
+  function apply(){
+    try{
+      var p=new URLSearchParams(location.search);
+      var m=p.get('mode')||'';
+      var isBooking=['nails','beauty','combo'].indexOf(m)>-1 && !p.get('myBookings');
+      document.body.classList.toggle('rana-v146-booking', isBooking);
+      if(!isBooking) return;
+      document.querySelectorAll('.works-intro,.gallery,#ranaV137Gallery,.rana-v137-gallery-box').forEach(function(el){ if(el) el.remove(); });
+    }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded', apply);
+  window.addEventListener('load', apply);
+  [60,180,420,900,1600,2600,4200].forEach(function(t){setTimeout(apply,t)});
 })();
 </script>

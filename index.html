@@ -9165,3 +9165,50 @@ body.rana-v139-non-mybookings .v95-landing-wrap .brand-profile-wrap{
   body.rana-v139-non-mybookings .v95-landing-wrap .brand-profile-wrap{margin:-92px auto 14px!important}
 }
 </style>
+
+<!-- V141: remove Arabic captions under all gallery/service images -->
+<style id="rana-v141-remove-arabic-under-images">
+/* إخفاء الجمل العربية الموجودة تحت صور الخدمات بكل الصفحات: الرئيسية، التجميل، الأظافر، والمشترك */
+.rana-v139-tiles .tile > .small,
+.rana-v137-card span,
+.rana-v139-gallery .rana-v137-card span,
+.service-gallery-photo > div {
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+
+/* ترتيب النجوم بعد حذف الجملة */
+.rana-v139-tiles .rana-v139-stars,
+.rana-v139-gallery .rana-v137-card .rana-v139-stars {
+  padding-top:10px!important;
+  padding-bottom:12px!important;
+}
+</style>
+<script id="rana-v141-remove-arabic-under-images-script">
+(function(){
+  function cleanUnderImageText(){
+    try{
+      document.querySelectorAll('.tiles .tile > .small, .rana-v137-card span, .service-gallery-photo > div').forEach(function(el){
+        el.textContent='';
+        el.style.setProperty('display','none','important');
+        el.style.setProperty('height','0','important');
+        el.style.setProperty('padding','0','important');
+        el.style.setProperty('margin','0','important');
+      });
+    }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded', cleanUnderImageText);
+  window.addEventListener('load', cleanUnderImageText);
+  [80,200,500,900,1500,2500,4000].forEach(function(t){setTimeout(cleanUnderImageText,t);});
+  try{
+    var obs=new MutationObserver(cleanUnderImageText);
+    obs.observe(document.documentElement,{childList:true,subtree:true,characterData:true});
+  }catch(e){}
+})();
+</script>

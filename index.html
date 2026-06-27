@@ -2919,6 +2919,19 @@ function bookingPage() {
         <div>بجانب مطعم ألف ليلة وليلة</div>
       </div>
 
+      <div class="rana-v148-photo-box" aria-label="صور مختارة من الخدمات">
+        <div class="rana-v148-photo-head">
+          <span>صور مختارة من شغلنا</span>
+          <small>لمسة ناعمة ومرتبة</small>
+        </div>
+        <div class="rana-v148-photo-collage">
+          <img loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/d/1GBQ9rmwIhmCtOQvq9z8t375X_8_S-pzI=w1000" alt="حواجب">
+          <img loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/d/1fWvlJu_Mtm8GX1MCcpaPjk_uQEOMbn7X=w1000" alt="أظافر">
+          <img loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/d/1hYO4rMwbTn1bGSd4RnA8AsBzgsEmxHhO=w1000" alt="شفايف">
+          <img loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/d/1Be1_pfYn9Lt2hybJ5pPvuvjtlTcCNh-X=w1000" alt="رموش">
+        </div>
+      </div>
+
 <label>الاسم الكامل ✨</label>
       <input id="name" placeholder="اكتبي اسمك الكامل">
 
@@ -9532,5 +9545,105 @@ body.rana-v146-booking .rana-v137-gallery-box{display:none!important;}
   try{
     new MutationObserver(function(){ removeGalleryNow(); }).observe(document.documentElement,{childList:true,subtree:true});
   }catch(e){}
+})();
+</script>
+
+<style id="rana-v148-one-photo-box-style">
+/* ===== Rana V148: one elegant photo box only on booking pages ===== */
+body.rana-v148-booking .rana-v148-photo-box{
+  margin:24px auto 26px!important;
+  padding:14px!important;
+  max-width:900px!important;
+  border-radius:28px!important;
+  border:1.8px solid rgba(212,175,55,.78)!important;
+  background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(255,247,236,.96))!important;
+  box-shadow:0 14px 34px rgba(122,31,43,.10), inset 0 0 0 1px rgba(255,255,255,.9)!important;
+}
+body.rana-v148-booking .rana-v148-photo-head{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  flex-wrap:wrap!important;
+  margin:0 0 12px!important;
+  color:#7A1F2B!important;
+  font-weight:950!important;
+  text-align:center!important;
+}
+body.rana-v148-booking .rana-v148-photo-head span{
+  font-size:22px!important;
+  letter-spacing:.2px!important;
+}
+body.rana-v148-booking .rana-v148-photo-head small{
+  font-size:13px!important;
+  color:#A77A3D!important;
+  font-weight:850!important;
+  background:rgba(255,248,225,.85)!important;
+  border:1px solid rgba(212,175,55,.38)!important;
+  padding:4px 10px!important;
+  border-radius:999px!important;
+}
+body.rana-v148-booking .rana-v148-photo-collage{
+  display:grid!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:5px!important;
+  padding:5px!important;
+  border-radius:22px!important;
+  background:linear-gradient(135deg,#d4af37,#fff0b8,#b88918)!important;
+  overflow:hidden!important;
+}
+body.rana-v148-booking .rana-v148-photo-collage img{
+  width:100%!important;
+  height:165px!important;
+  object-fit:cover!important;
+  display:block!important;
+  border-radius:17px!important;
+  filter:brightness(.98) contrast(1.04) saturate(1.05)!important;
+  box-shadow:none!important;
+}
+body.rana-v148-booking .rana-v148-photo-collage img:hover{
+  filter:brightness(1.03) contrast(1.07) saturate(1.08)!important;
+}
+@media(max-width:760px){
+  body.rana-v148-booking .rana-v148-photo-box{
+    margin:18px auto 22px!important;
+    padding:12px!important;
+    border-radius:24px!important;
+  }
+  body.rana-v148-booking .rana-v148-photo-head span{font-size:19px!important;}
+  body.rana-v148-booking .rana-v148-photo-head small{font-size:12px!important;}
+  body.rana-v148-booking .rana-v148-photo-collage{
+    grid-template-columns:repeat(2,1fr)!important;
+    gap:4px!important;
+    padding:4px!important;
+    border-radius:20px!important;
+  }
+  body.rana-v148-booking .rana-v148-photo-collage img{
+    height:116px!important;
+    border-radius:15px!important;
+  }
+}
+@media(max-width:380px){
+  body.rana-v148-booking .rana-v148-photo-collage img{height:104px!important;}
+}
+</style>
+<script id="rana-v148-one-photo-box-script">
+(function(){
+  function apply(){
+    try{
+      var p=new URLSearchParams(location.search);
+      var isBooking=!!p.get('mode') && !p.get('myBookings');
+      document.body.classList.toggle('rana-v148-booking', isBooking);
+      if(!isBooking) return;
+      // keep only one new photo box if scripts rerender
+      var boxes=document.querySelectorAll('.rana-v148-photo-box');
+      boxes.forEach(function(b,i){ if(i>0) b.remove(); });
+      // remove old multi-box galleries
+      document.querySelectorAll('.works-intro,.gallery,#ranaV137Gallery,.rana-v137-gallery-box,.rana-v137-gallery-grid').forEach(function(el){ if(el) el.remove(); });
+    }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded', apply);
+  window.addEventListener('load', apply);
+  [70,180,400,900,1700,3000,5000].forEach(function(t){setTimeout(apply,t)});
 })();
 </script>

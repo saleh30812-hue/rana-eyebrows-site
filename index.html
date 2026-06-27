@@ -9647,3 +9647,171 @@ body.rana-v148-booking .rana-v148-photo-collage img:hover{
   [70,180,400,900,1700,3000,5000].forEach(function(t){setTimeout(apply,t)});
 })();
 </script>
+
+<style id="rana-v149-mode-photo-cards-style">
+/* ===== Rana V149: mode-specific professional photo cards ===== */
+body.rana-v149-booking .rana-v148-photo-box{
+  margin:24px auto 26px!important;
+  padding:14px!important;
+  max-width:920px!important;
+  border-radius:28px!important;
+  border:1.8px solid rgba(212,175,55,.78)!important;
+  background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(255,247,236,.98))!important;
+  box-shadow:0 14px 34px rgba(122,31,43,.10), inset 0 0 0 1px rgba(255,255,255,.92)!important;
+}
+body.rana-v149-booking .rana-v149-photo-head{
+  text-align:center!important;
+  margin:0 0 14px!important;
+}
+body.rana-v149-booking .rana-v149-photo-title{
+  color:#7A1F2B!important;
+  font-size:24px!important;
+  font-weight:950!important;
+  line-height:1.2!important;
+  margin:0 0 6px!important;
+}
+body.rana-v149-booking .rana-v149-photo-sub{
+  color:#A77A3D!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  display:inline-block!important;
+  background:rgba(255,248,225,.92)!important;
+  border:1px solid rgba(212,175,55,.38)!important;
+  padding:4px 10px!important;
+  border-radius:999px!important;
+}
+body.rana-v149-booking .rana-v149-grid{
+  display:grid!important;
+  gap:12px!important;
+}
+body.rana-v149-booking .rana-v149-grid.count-4{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+body.rana-v149-booking .rana-v149-grid.count-3{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+body.rana-v149-booking .rana-v149-grid.count-1{grid-template-columns:minmax(0,340px)!important;justify-content:center!important;}
+body.rana-v149-booking .rana-v149-card{
+  border:1.7px solid rgba(212,175,55,.82)!important;
+  border-radius:22px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  box-shadow:0 10px 22px rgba(122,31,43,.08)!important;
+  transition:.22s ease!important;
+}
+body.rana-v149-booking .rana-v149-card:hover{
+  transform:translateY(-3px)!important;
+  box-shadow:0 16px 30px rgba(122,31,43,.14)!important;
+}
+body.rana-v149-booking .rana-v149-card img{
+  display:block!important;
+  width:100%!important;
+  height:160px!important;
+  object-fit:cover!important;
+}
+body.rana-v149-booking .rana-v149-name-wrap{
+  padding:10px 8px 12px!important;
+  background:linear-gradient(135deg,rgba(255,251,240,.98),rgba(255,243,218,.98))!important;
+  border-top:1.4px solid rgba(212,175,55,.62)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95)!important;
+  text-align:center!important;
+}
+body.rana-v149-booking .rana-v149-name{
+  display:inline-block!important;
+  padding:7px 18px!important;
+  margin:0 auto!important;
+  border-radius:999px!important;
+  background:linear-gradient(135deg,#fff7d6,#f7e4a0 45%,#fff9de)!important;
+  border:1.6px solid rgba(212,175,55,.95)!important;
+  box-shadow:0 6px 14px rgba(212,175,55,.18), inset 0 1px 0 rgba(255,255,255,.92)!important;
+  color:#b8860b!important;
+  font-size:17px!important;
+  font-weight:950!important;
+  line-height:1.15!important;
+  letter-spacing:.2px!important;
+}
+@media(max-width:760px){
+  body.rana-v149-booking .rana-v148-photo-box{margin:18px auto 22px!important;padding:12px!important;border-radius:24px!important;}
+  body.rana-v149-booking .rana-v149-photo-title{font-size:21px!important;}
+  body.rana-v149-booking .rana-v149-photo-sub{font-size:12px!important;}
+  body.rana-v149-booking .rana-v149-grid.count-4,
+  body.rana-v149-booking .rana-v149-grid.count-3{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;}
+  body.rana-v149-booking .rana-v149-grid.count-3 .rana-v149-card:last-child{grid-column:1 / -1!important;max-width:56%!important;margin:0 auto!important;}
+  body.rana-v149-booking .rana-v149-grid.count-1{grid-template-columns:minmax(0,260px)!important;}
+  body.rana-v149-booking .rana-v149-card img{height:116px!important;}
+  body.rana-v149-booking .rana-v149-name{font-size:15px!important;padding:8px 12px!important;}
+}
+</style>
+<script id="rana-v149-mode-photo-cards-script">
+(function(){
+  var IMG={
+    nails:'https://lh3.googleusercontent.com/d/1fWvlJu_Mtm8GX1MCcpaPjk_uQEOMbn7X=w1000',
+    brow:'https://lh3.googleusercontent.com/d/1GBQ9rmwIhmCtOQvq9z8t375X_8_S-pzI=w1000',
+    lips:'https://lh3.googleusercontent.com/d/1hYO4rMwbTn1bGSd4RnA8AsBzgsEmxHhO=w1000',
+    lashes:'https://lh3.googleusercontent.com/d/1Be1_pfYn9Lt2hybJ5pPvuvjtlTcCNh-X=w1000'
+  };
+  function mode(){
+    try{
+      var p=new URLSearchParams(location.search);
+      if(p.get('myBookings')) return '';
+      return p.get('mode')||'';
+    }catch(e){return ''}
+  }
+  function cardsFor(m){
+    if(m==='beauty') return [
+      {img:IMG.brow, name:'Brow 👑'},
+      {img:IMG.lashes, name:'Lashes 🟣'},
+      {img:IMG.lips, name:'Lips 💋'}
+    ];
+    if(m==='nails') return [
+      {img:IMG.nails, name:'Nails 🌸'}
+    ];
+    if(m==='combo') return [
+      {img:IMG.brow, name:'Brow 👑'},
+      {img:IMG.nails, name:'Nails 🌸'},
+      {img:IMG.lips, name:'Lips 💋'},
+      {img:IMG.lashes, name:'Lashes 🟣'}
+    ];
+    return [];
+  }
+  function subFor(m){
+    if(m==='beauty') return 'مختارات مرتبة من خدمات التجميل';
+    if(m==='nails') return 'مختارات من خدمات الأظافر';
+    if(m==='combo') return 'مختارات من كل الأقسام';
+    return 'لمسة ناعمة ومرتبة';
+  }
+  function render(){
+    try{
+      var m=mode();
+      var isBooking=!!m;
+      document.body.classList.toggle('rana-v149-booking', isBooking);
+      if(!isBooking) return;
+      document.querySelectorAll('.works-intro,.gallery,#ranaV137Gallery,.rana-v137-gallery-box,.rana-v137-gallery-grid').forEach(function(el){ if(el) el.remove(); });
+      var box=document.querySelector('.rana-v148-photo-box');
+      if(!box){
+        var anchor=document.querySelector('#name')?.closest('label') || document.querySelector('label');
+        if(anchor){
+          box=document.createElement('div');
+          box.className='rana-v148-photo-box';
+          anchor.parentNode.insertBefore(box, anchor);
+        } else return;
+      }
+      var cards=cardsFor(m);
+      var count=cards.length || 1;
+      box.innerHTML=''
+        + '<div class="rana-v149-photo-head">'
+        +   '<div class="rana-v149-photo-title">صور مختارة من شغلنا</div>'
+        +   '<div class="rana-v149-photo-sub">'+subFor(m)+'</div>'
+        + '</div>'
+        + '<div class="rana-v149-grid count-'+count+'">'
+        + cards.map(function(c){
+              return '<div class="rana-v149-card">'
+              + '<img loading="lazy" decoding="async" src="'+c.img+'" alt="'+c.name+'">'
+              + '<div class="rana-v149-name-wrap"><div class="rana-v149-name">'+c.name+'</div></div>'
+              + '</div>';
+          }).join('')
+        + '</div>';
+    }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded', render);
+  window.addEventListener('load', render);
+  window.addEventListener('resize', render);
+  [60,180,420,900,1600,2600,4200].forEach(function(t){setTimeout(render,t)});
+})();
+</script>

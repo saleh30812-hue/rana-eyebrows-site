@@ -9482,3 +9482,55 @@ body.rana-v146-booking .rana-v137-gallery-box{display:none!important;}
   [60,180,420,900,1600,2600,4200].forEach(function(t){setTimeout(apply,t)});
 })();
 </script>
+
+<style id="rana-v147-delete-works-gallery-everywhere">
+/* V147: remove من أعمالنا / gallery cards completely */
+.works-intro,
+.gallery,
+#ranaV137Gallery,
+.rana-v137-gallery-box,
+.rana-v137-gallery-grid {
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+</style>
+<script id="rana-v147-delete-works-gallery-everywhere-script">
+(function(){
+  function removeGalleryNow(){
+    document.querySelectorAll('.works-intro,.gallery,#ranaV137Gallery,.rana-v137-gallery-box,.rana-v137-gallery-grid').forEach(function(el){
+      if(el) el.remove();
+    });
+
+    var badTitles=['من أعمالنا','معرض الخدمات','معرض الأظافر','معرض التجميل'];
+    document.querySelectorAll('h1,h2,h3,div,p').forEach(function(el){
+      var txt=(el.textContent||'').replace(/\s+/g,' ').trim();
+      if(!txt) return;
+      var bad=badTitles.some(function(t){return txt.indexOf(t)>-1;});
+      if(!bad) return;
+
+      var box=el.closest('.works-intro,.rana-v137-gallery-box') || el.closest('div');
+      if(box && !box.classList.contains('wrap')){
+        var next=box.nextElementSibling;
+        if(next && (next.classList && (next.classList.contains('gallery') || next.classList.contains('rana-v137-gallery-grid')) || (next.querySelector && next.querySelector('img')))){
+          next.remove();
+        }
+        box.remove();
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', removeGalleryNow);
+  window.addEventListener('load', removeGalleryNow);
+  [30,80,150,300,600,1000,1600,2600,4200,6500].forEach(function(t){setTimeout(removeGalleryNow,t)});
+  try{
+    new MutationObserver(function(){ removeGalleryNow(); }).observe(document.documentElement,{childList:true,subtree:true});
+  }catch(e){}
+})();
+</script>

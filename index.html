@@ -9212,3 +9212,100 @@ body.rana-v139-non-mybookings .v95-landing-wrap .brand-profile-wrap{
   }catch(e){}
 })();
 </script>
+
+<!-- V142: softer gold bars + lower booking circle photo -->
+<style id="rana-v142-soft-shine-lower-booking-photo">
+/* تخفيف لمعة المستطيلات الذهبية تحت الصور */
+.rana-v139-gallery .rana-v137-card strong,
+.rana-v139-tiles .tile-title{
+  background:linear-gradient(180deg,#c99d25 0%,#dfbf58 48%,#c4941d 100%)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.28),
+    inset 0 -1px 0 rgba(138,91,0,.12),
+    0 1px 5px rgba(212,175,55,.10)!important;
+  border-top:1px solid rgba(255,255,255,.18)!important;
+  border-bottom:1px solid rgba(170,120,0,.10)!important;
+  text-shadow:0 1px 1px rgba(0,0,0,.12)!important;
+}
+.rana-v139-gallery .rana-v137-card strong::after,
+.rana-v139-tiles .tile-title::after{
+  background:linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 55%, rgba(255,255,255,0) 100%)!important;
+  opacity:.55!important;
+}
+.rana-v139-gallery .rana-v137-card,
+.rana-v139-tiles .tile{
+  box-shadow:0 9px 20px rgba(122,31,43,.08),0 3px 10px rgba(212,175,55,.06)!important;
+}
+.rana-v139-gallery .rana-v137-card:hover,
+.rana-v139-tiles .tile:hover{
+  box-shadow:0 12px 24px rgba(122,31,43,.10),0 4px 12px rgba(212,175,55,.08)!important;
+}
+
+/* تنزيل الصورة الدائرية شوي في صفحات الحجز فقط */
+body.rana-v142-mode-booking .brand-profile-wrap{
+  margin:-94px auto 24px!important;
+}
+body.rana-v142-mode-booking .brand-profile-image{
+  transform:translateY(8px)!important;
+}
+
+/* صفحة حجوزاتي إذا ظهرت فيها الصورة الدائرية */
+body.rana-v142-mybookings .brand-profile-wrap{
+  margin:-76px auto 22px!important;
+  transform:translateX(14px)!important;
+}
+body.rana-v142-mybookings .brand-profile-image{
+  transform:translateY(8px)!important;
+}
+
+@media(max-width:760px){
+  body.rana-v142-mode-booking .brand-profile-wrap{
+    margin:-82px auto 22px!important;
+  }
+  body.rana-v142-mode-booking .brand-profile-image{
+    transform:translateY(7px)!important;
+  }
+  body.rana-v142-mybookings .brand-profile-wrap{
+    margin:-68px auto 20px!important;
+    transform:translateX(14px)!important;
+  }
+  body.rana-v142-mybookings .brand-profile-image{
+    transform:translateY(7px)!important;
+  }
+}
+</style>
+<script id="rana-v142-soft-shine-lower-booking-photo-script">
+(function(){
+  function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
+  function apply(){
+    var p=params();
+    var mode=p.get('mode')||'';
+    var isMy=!!p.get('myBookings');
+    if(mode){ document.body.classList.add('rana-v142-mode-booking'); }
+    if(isMy){ document.body.classList.add('rana-v142-mybookings'); }
+
+    /* ضمان تنزيل الصورة حتى لو في كود قديم أعطاها margin قوي */
+    if(mode){
+      document.querySelectorAll('.brand-profile-wrap').forEach(function(w){
+        w.style.setProperty('margin', window.innerWidth<=760 ? '-82px auto 22px' : '-94px auto 24px', 'important');
+      });
+      document.querySelectorAll('.brand-profile-image, img[src*="rana-profile"]').forEach(function(img){
+        img.style.setProperty('transform', window.innerWidth<=760 ? 'translateY(7px)' : 'translateY(8px)', 'important');
+      });
+    }
+    if(isMy){
+      document.querySelectorAll('.brand-profile-wrap').forEach(function(w){
+        w.style.setProperty('margin', window.innerWidth<=760 ? '-68px auto 20px' : '-76px auto 22px', 'important');
+        w.style.setProperty('transform', 'translateX(14px)', 'important');
+      });
+      document.querySelectorAll('.brand-profile-image, img[src*="rana-profile"]').forEach(function(img){
+        img.style.setProperty('transform', window.innerWidth<=760 ? 'translateY(7px)' : 'translateY(8px)', 'important');
+      });
+    }
+  }
+  document.addEventListener('DOMContentLoaded', apply);
+  window.addEventListener('load', apply);
+  window.addEventListener('resize', apply);
+  [60,160,350,700,1200,2200,4000].forEach(function(t){setTimeout(apply,t)});
+})();
+</script>
